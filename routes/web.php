@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Secret@create');
+Route::get('/{key}','Secret@show');
+
+Route::post('/save', 'Secret@store');
