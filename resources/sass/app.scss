@@ -8,7 +8,79 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+.btn {
+  text-transform: uppercase;
+}
+.btn-primary {
+  background-color: $green;
+  border-color: darken($green, 10);
+  color: white;
+  font-weight: 400;
+
+  &:hover {
+    background-color: lighten($green, 10);
+  }
+
+}
+
+
+.head-top {
+  background-image: url(../../public/images/dots_top.png);
+  height: 36px;
+}
+
+.logo-image {
+  display: table-cell;
+  height: 70px;
+  vertical-align: middle;
+
+  > a{
+    float: left;
+    display: block;
+    background-image: url(../../public/images/header_logo.png);
+    width: 200px;
+    height: 49px;
+    margin-top: 5px;
+  }
+
+  .tagline {
+    float: left;
+    font-size: 11px;
+    margin-left: 20px;
+    margin-top: 10px;
+
+    a {
+      color: #000000;
+      line-height: 18px;
+    }
+  }
+}
+
+h2, .h2 {
+  font-size: 22px;
+  color: $green;
+}
+
+h1, .h1 {
+  color: $blue;
+  font-size: 36px;
+}
+
+input,textarea {
+  &:read-only {
+    background-color: $gray-300;
+  }
+}
+
+/**
+Retina
+ */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+  .logo-image {
+    > a {
+      background-image: url("../../public/images/header_logo@2x.png");
+      background-size: 100% auto;
+    }
+  }
 }

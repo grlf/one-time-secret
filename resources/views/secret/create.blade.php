@@ -1,80 +1,39 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>{{ env('APP_NAME') }}</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        @if(Session::has('success'))
-            <div>
-                The link to view your secret is: {{ url(Session::get('success')) }}
-            </div>
-        @else
-            <form method="POST" action="/save">
-                @csrf
-                <label for="secret">Create your secret to save</label><br/>
-                <textarea name="secret" id="secret" cols="30" rows="10"></textarea>
-                <button type="Submit">Create link</button>
-            </form>
-        @endif
-    </body>
-</html>
+@section('content')
+    <div class="row">
+        <div class="col-12">
+            <h1>One Time Secret</h1>
+            @if(Session::has('success'))
+                <p>
+                    The link to view your secret is:
+                </p>
+                <div class="form-group">
+                    <input type="text" value="{{ url(Session::get('success')) }}" class="form-control can-copy" readonly/>
+                </div>
+                <p>
+                    Send this link to you would like to view your secret.  Once the link is clicked, the secret is display
+                    one time and then gone forever.
+                </p>
+            @else
+                <h2>Paste a password, secret message or private link below.</h2>
+                <form method="POST" action="/save">
+                    @csrf
+                    <div class="form-group">
+                        <textarea name="secret" id="secret" rows="10" class="form-control" placeholder="Enter your secret here..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="expires">Lifetime</label>
+                        <select name="expires" class="form-control" id="expires">
+                            <option value="3600" selected>1 hour</option>
+                            <option value="14400">4 hours</option>
+                            <option value="86400">24 hours</option>
+                            <option value="604800">1 week</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create link</button>
+                </form>
+            @endif
+        </div>
+    </div>
+@endsection
