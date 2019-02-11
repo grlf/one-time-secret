@@ -12,8 +12,7 @@
                     <input type="text" value="{{ url(Session::get('success')) }}" class="form-control can-copy" readonly/>
                 </div>
                 <p>
-                    Send this link to you would like to view your secret.  Once the link is clicked, the secret is display
-                    one time and then gone forever.
+                    Pass along this link.  The secret can be viewed one time and is then gone forever.
                 </p>
             @else
                 <h2>Paste a password, secret message or private link below.</h2>

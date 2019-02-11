@@ -11,8 +11,8 @@
                     <textarea rows="10" name="secret" id="secret" class="form-control can-copy" readonly>{{ $secret }}</textarea>
                 </div>
                 <p>
-                    Copy this information and save it in a safe spot.  Once you refresh or navigate away from this page
-                    it will be gone forever.
+                    Copy this information and save it in a safe spot.  <strong>Once you refresh or navigate away from this page
+                        it will be gone forever.</strong>
                 </p>
             @else
                 <p>Your secret cannot be found.  Please ask the sender to try again.</p>
