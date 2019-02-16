@@ -12,18 +12,31 @@ class Secret extends Controller
         return view('secret.create');
     }
 
-    public function show($key)
+    public function get(Request $request)
     {
+        $validatedData = $request->validate([
+            'key' => 'required'
+        ]);
+
+        $key = $request->get('key');
         $my_secret = Redis::get($key);
         Redis::del($key);
 
         if ($my_secret) {
             $my_secret = decrypt($my_secret);
-        } else {
-            $my_secret = '';
+            return response($my_secret, 200, ['Content-Type' => 'text/plain']);
         }
 
-        return view('secret.show', ['secret' => $my_secret]);
+        return response(
+            'Your secret cannot be found.  Please ask the sender to try again.',
+            404,
+            ['Content-Type' => 'text/plain']
+        );
+    }
+
+    public function show($key)
+    {
+        return view('secret.show', compact('key'));
     }
 
     public function store(Request $request)

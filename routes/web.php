@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'Secret@create');
-Route::get('/{key}','Secret@show');
+Route::get('/{key}', 'Secret@show');
 
 Route::post('/save', 'Secret@store');
+Route::post('/get', 'Secret@get');

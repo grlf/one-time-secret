@@ -6,3 +6,19 @@
  */
 
 require('./bootstrap');
+
+$(document).ready(function() {
+    if ($('#get-secret').length > 0) {
+        let postData = $("#get-secret").serialize();
+        $.post(
+            '/get',
+            postData,
+            function(data) {
+                $("#found").show();
+                $("#secret").text(data).fadeIn(1000);
+            }
+        ).fail(function(data) {
+            $('#error-msg').html(data.responseText).show();
+        });
+    }
+});
