@@ -1,0 +1,31 @@
+name: ots
+recipe: laravel
+config:
+  php: '7.2'
+  via: nginx
+  webroot: public
+  xdebug: false
+  config:
+    php: .lando/php.ini
+services:
+  appserver:
+    build_as_root:
+      - ./.lando/build.sh
+    build:
+      - cp .lando/.env.lando .env
+    overrides:
+      environment:
+        PHP_IDE_CONFIG: "serverName=ots"
+  redis:
+    type: redis
+tooling:
+  xon:
+    service: appserver
+    description: Enable xdebug for nginx.
+    cmd: docker-php-ext-enable xdebug && pkill -o -USR2 php-fpm
+    user: root
+  xoff:
+    service: appserver
+    description: Disable xdebug for nginx.
+    cmd: rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && pkill -o -USR2 php-fpm
+    user: root
