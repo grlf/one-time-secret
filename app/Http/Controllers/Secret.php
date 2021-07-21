@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Str;
 
 class Secret extends Controller
 {
@@ -50,7 +51,7 @@ class Secret extends Controller
         $my_secret = encrypt($my_secret);
 
         //Generate Key
-        $key = str_random(20);
+        $key = Str::random(20);
 
         $expires = $request->get('expires');
         //Don't let this sit around for longer than a week
