@@ -1,7 +1,8 @@
 name: ots
 recipe: laravel
 config:
-  php: '7.2'
+  php: '7.4'
+  composer_version: 1
   via: nginx
   webroot: public
   xdebug: false
