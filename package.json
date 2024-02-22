@@ -12,12 +12,10 @@
     "devDependencies": {
         "bootstrap": "^4.*",
         "cross-env": "^7.0",
-        "jquery": "^3.2",
+        "jquery": "^3.7",
         "laravel-mix": "^6.*",
-        "popper.js": "^1.12",
         "resolve-url-loader": "^5.0.0",
-        "sass": "~1.32.13",
-        "sass-loader": "^8.0.0",
-        "vue-template-compiler": "^2.6.4"
+        "sass": "^1.71",
+        "sass-loader": "^14"
     }
 }
