@@ -8,8 +8,13 @@
                 <p>
                     The link to view your secret is:
                 </p>
-                <div class="form-group">
-                    <input type="text" value="{{ url(Session::get('success')) }}" onclick="this.select()" class="form-control can-copy" readonly/>
+                <div class="form-row">
+                        <div class="col-full col-lg-10 mb-3">
+                            <input type="text" id="my-link" value="{{ url(Session::get('success')) }}" onclick="this.select()" class="form-control can-copy" readonly/>
+                        </div>
+                        <div class="col-full col-lg-2 mb-3">
+                            <button type="button" class="btn btn-primary btn-block copy-btn" data-copy-selector="#my-link"><i class="bi bi-copy"></i> Copy</button>
+                        </div>
                 </div>
                 <p>
                     Pass along this link.  The secret can be viewed one time and is then gone forever.
