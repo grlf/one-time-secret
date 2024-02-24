@@ -9,7 +9,7 @@
                     The link to view your secret is:
                 </p>
                 <div class="form-group">
-                    <input type="text" value="{{ url(Session::get('success')) }}" class="form-control can-copy" readonly/>
+                    <input type="text" value="{{ url(Session::get('success')) }}" onclick="this.select()" class="form-control can-copy" readonly/>
                 </div>
                 <p>
                     Pass along this link.  The secret can be viewed one time and is then gone forever.
