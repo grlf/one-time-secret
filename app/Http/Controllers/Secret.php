@@ -16,7 +16,7 @@ class Secret extends Controller
     public function get(Request $request)
     {
         $validatedData = $request->validate([
-            'key' => 'required'
+            'key' => 'required',
         ]);
 
         $key = $request->get('key');
@@ -25,6 +25,7 @@ class Secret extends Controller
 
         if ($my_secret) {
             $my_secret = decrypt($my_secret);
+
             return response($my_secret, 200, ['Content-Type' => 'text/plain']);
         }
 
@@ -44,7 +45,7 @@ class Secret extends Controller
     {
         $validatedData = $request->validate([
             'secret' => 'required',
-            'expires' => 'required|integer'
+            'expires' => 'required|integer',
         ]);
 
         $my_secret = $request->get('secret');
