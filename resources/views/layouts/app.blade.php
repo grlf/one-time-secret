@@ -3,17 +3,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    @if (request()->hasSession())
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+    @endif
 
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600" rel="stylesheet" type="text/css">
+    <title>{{ config('app.name') }}</title>
+
     <link rel="stylesheet" href="https://use.typekit.net/pxl0vxi.css">
-    <link href="/images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
+    <link href="/images/favicon.ico" rel="icon" type="image/vnd.microsoft.icon">
 
-    <title>{{ env('APP_NAME') }}</title>
-    <script src="{{ mix('/js/app.js') }}"></script>
-
-    <!-- Fonts -->
-    <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
-
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
 <div class="head-top"></div>

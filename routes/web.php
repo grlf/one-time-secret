@@ -1,18 +1,12 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\Secret;
+use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'Secret@create');
-Route::get('/{key}', 'Secret@show');
+Route::get('/', [Secret::class, 'create']);
 
-Route::post('/save', 'Secret@store');
-Route::post('/get', 'Secret@get');
+Route::post('/save', [Secret::class, 'store'])->middleware('throttle:secret-store');
+Route::post('/get', [Secret::class, 'get'])->middleware('throttle:secret-reveal');
+
+// Matches any secret id, so new GET routes must be declared above it.
+Route::get('/{id}', [Secret::class, 'show'])->where('id', Secret::ID_PATTERN);
