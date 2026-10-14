@@ -1,0 +1,39 @@
+{
+  "mcpServers": {
+    "bitbucket": {
+      "command": "npx",
+      "env": {
+        "ATLASSIAN_USER_EMAIL": "${BITBUCKET_EMAIL}",
+        "ATLASSIAN_API_TOKEN": "${BITBUCKET_API_TOKEN}"
+      },
+      "args": [
+        "-y",
+        "@aashari/mcp-server-atlassian-bitbucket"
+      ]
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ]
+    },
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp",
+        "--api-key",
+        "${CONTEXT7_MCP_KEY}"
+      ],
+      "enabled": true
+    },
+    "greenleaf": {
+      "type": "http",
+      "url": "https://mcp.greenleafmedia.com/greenleaf",
+      "headers": {
+        "Authorization": "Bearer ${GREENLEAF_MCP_KEY}"
+      }
+    }
+  }
+}
